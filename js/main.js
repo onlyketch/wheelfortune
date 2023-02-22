@@ -18,6 +18,13 @@ const screenHeight = document.body.clientHeight;
 var wheelSpeed = 1;
 var wheelBrake = 0;
 var currentSector = 0;
+var canRotate = true;
+// var rotated = Crafty.storage('rotated');
+// if (!rotated) {
+// 	canRotate = true; 
+// } else {
+// 	canRotate = false;
+// }
 
 
 Crafty.sprite("./images/wheel.png", {wheel:[0,0,608,608]});
@@ -37,6 +44,7 @@ function twist() {
 
 function getBonus() {
 	Crafty.e("Delay").delay(function() {
+		// Crafty.storage('rotated', 1);
 		Crafty.enterScene("Bonus");
 	}, 1000, 0);
 }
@@ -139,12 +147,17 @@ var btnStart = Crafty.e("2D, DOM, btnStart, Mouse")
 btnStart.x = sceenWidth/2 - btnStart.w/2;
 btnStart.y = wheel.y + wheel.h + 52;
 btnStart.bind("Click", function() {
-	twist();
-	btnStart.destroy();
-	var load = Crafty.e("2D, DOM, load")
-				.attr({w: 100, h: 100});
-	load.x = sceenWidth/2 - load.w/2;
-	load.y = wheel.y + wheel.h + 52;
+	if (canRotate) {
+			twist();
+			btnStart.destroy();
+			var load = Crafty.e("2D, DOM, load")
+						.attr({w: 100, h: 100});
+			load.x = sceenWidth/2 - load.w/2;
+			load.y = wheel.y + wheel.h + 52;	
+	} else {
+		Crafty.enterScene("Abort");
+	}
+
 });
 
 var logo = Crafty.e("2D, DOM, logo")
@@ -162,10 +175,10 @@ Crafty.defineScene("Bonus", function() {
 	var bonusAmount = 0;
 	if (currentSector == 0) bonusAmount = 15;
 	if (currentSector == 1) bonusAmount = 20;
-	if (currentSector == 2) bonusAmount = 25;
-	if (currentSector == 3) bonusAmount = 30;
-	if (currentSector == 4) bonusAmount = 35;
-	if (currentSector == 5) bonusAmount = 40;
+	if (currentSector == 2) bonusAmount = 30;
+	if (currentSector == 3) bonusAmount = 15;
+	if (currentSector == 4) bonusAmount = 20;
+	if (currentSector == 5) bonusAmount = 30;
 
 	Crafty.sprite("./images/get_tg.png", {getTg:[0,0,576,160]});
 	Crafty.sprite("./images/get_vk.png", {getVk:[0,0,572,160]});
@@ -174,7 +187,7 @@ Crafty.defineScene("Bonus", function() {
 	Crafty.init(screenWidth, screenHeight, document.getElementById('wheel'));
 
 	var subtitle = Crafty.e("2D, DOM, Text")
-		.attr({w: 280, y: 152})
+		.attr({w: 280, y: 80})
 		.text('Ваш бонус:')
 		.textColor('white')
 		.textFont({
@@ -214,14 +227,70 @@ Crafty.defineScene("Bonus", function() {
 	btnGetTg.x = screenWidth/2 - btnGetTg.w/2;
 	btnGetTg.y = subtitle2.y + 120;
 	btnGetTg.bind("Click", function() {
-		window.open("https://ya.ru", "_blank");
+		window.open("https://salebot.site/fortune_coupon_ur_1?nominal=" + bonusAmount, "_blank");
 	});
 
 	var btnGetVk = Crafty.e("2D, DOM, getVk, Mouse").attr({w: 286, h: 80}).css({'cursor': 'pointer'});
 	btnGetVk.x = screenWidth/2 - btnGetVk.w/2;
 	btnGetVk.y = btnGetTg.y + 103;
 	btnGetVk.bind("Click", function() {
-		window.open("https://ya.ru", "_blank");
+		window.open("https://vk.com/app7062840#fortune_coupon_ur&force=1&nominal=" + bonusAmount, "_blank");
+	});
+
+	var logo = Crafty.e("2D, DOM, logo")
+					.attr({w: 121, h: 28});
+	logo.x = screenWidth/2 - logo.w/2;
+	logo.y = screenHeight - 63;
+
+});
+Crafty.defineScene("Abort", function() {
+
+	const screenWidth = document.body.clientWidth;
+	const screenHeight = document.body.clientHeight;
+
+	Crafty.sprite("./images/tg.png", {getTg:[0,0,576,160]});
+	Crafty.sprite("./images/vk.png", {getVk:[0,0,572,160]});
+	Crafty.sprite("./images/logo.png", {logo:[0,0,242,56]});
+
+	Crafty.init(screenWidth, screenHeight, document.getElementById('wheel'));
+
+	var title = Crafty.e("2D, DOM, Text")
+		.attr({w: 280, y: 80})
+		.text('Вы уже прокручивали колесо!')
+		.textColor('white')
+		.textFont({
+			family: 'Manrope-Regular',
+			size: '28px',
+			lineHeight: '38px',
+			weight: '400'
+		})
+		.dynamicTextGeneration(true);
+	title.x = screenWidth/2 - title.w/2;
+
+	var subtitle2 = Crafty.e("2D, DOM, Text")
+		.attr({w: 280, y: title.y + 150})
+		.text('Следите за другими розыгрышами в удобном мессенджере')
+		.textColor('white')
+		.textFont({
+			family: 'Manrope-Regular',
+			size: '20px',
+			lineHeight: '27px',
+			weight: '400'
+		});
+	subtitle2.x = screenWidth/2 - subtitle2.w/2;
+
+	var btnTg = Crafty.e("2D, DOM, getTg, Mouse").attr({w: 288, h: 80}).css({'cursor': 'pointer'});
+	btnTg.x = screenWidth/2 - btnTg.w/2;
+	btnTg.y = subtitle2.y + 120;
+	btnTg.bind("Click", function() {
+		window.open("https://t.me/s/ulybka_radugi", "_blank");
+	});
+
+	var btnVk = Crafty.e("2D, DOM, getVk, Mouse").attr({w: 286, h: 80}).css({'cursor': 'pointer'});
+	btnVk.x = screenWidth/2 - btnVk.w/2;
+	btnVk.y = btnTg.y + 103;
+	btnVk.bind("Click", function() {
+		window.open("https://vk.com/ulybka_radugi", "_blank");
 	});
 
 	var logo = Crafty.e("2D, DOM, logo")
