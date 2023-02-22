@@ -153,7 +153,7 @@ btnStart.bind("Click", function() {
 			var load = Crafty.e("2D, DOM, load")
 						.attr({w: 100, h: 100});
 			load.x = sceenWidth/2 - load.w/2;
-			load.y = wheel.y + wheel.h + 52;	
+			load.y = wheel.y + wheel.h + 15;	
 	} else {
 		Crafty.enterScene("Abort");
 	}
@@ -227,14 +227,14 @@ Crafty.defineScene("Bonus", function() {
 	btnGetTg.x = screenWidth/2 - btnGetTg.w/2;
 	btnGetTg.y = subtitle2.y + 120;
 	btnGetTg.bind("Click", function() {
-		window.open("https://salebot.site/fortune_coupon_ur_1?nominal=" + bonusAmount, "_blank");
+		window.open("https://t.me/ulybkaradugibot?start=tg_wheelfortune" + bonusAmount, "_self");
 	});
 
 	var btnGetVk = Crafty.e("2D, DOM, getVk, Mouse").attr({w: 286, h: 80}).css({'cursor': 'pointer'});
 	btnGetVk.x = screenWidth/2 - btnGetVk.w/2;
 	btnGetVk.y = btnGetTg.y + 103;
 	btnGetVk.bind("Click", function() {
-		window.open("https://vk.com/app7062840#fortune_coupon_ur&force=1&nominal=" + bonusAmount, "_blank");
+		window.open("https://vk.com/app7062840#fortune_coupon_ur&force=1&nominal=" + bonusAmount, "_self");
 	});
 
 	var logo = Crafty.e("2D, DOM, logo")
