@@ -18,13 +18,13 @@ const screenHeight = document.body.clientHeight;
 var wheelSpeed = 1;
 var wheelBrake = 0;
 var currentSector = 0;
-var canRotate = true;
-// var rotated = Crafty.storage('rotated');
-// if (!rotated) {
-// 	canRotate = true; 
-// } else {
-// 	canRotate = false;
-// }
+var canRotate;
+var rotated = Crafty.storage('rotated');
+if (!rotated) {
+	canRotate = true; 
+} else {
+	canRotate = false;
+}
 
 
 Crafty.sprite("./images/wheel.png", {wheel:[0,0,608,608]});
@@ -44,7 +44,7 @@ function twist() {
 
 function getBonus() {
 	Crafty.e("Delay").delay(function() {
-		// Crafty.storage('rotated', 1);
+		Crafty.storage('rotated', 1);
 		Crafty.enterScene("Bonus");
 	}, 1000, 0);
 }
