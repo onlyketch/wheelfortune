@@ -294,7 +294,7 @@ Crafty.defineScene("Abort", function() {
 var rotated = Crafty.storage('isRotated');
 if (!rotated) {
 	canRotate = true;
-	Crafty.enterScene("Bonus"); 
+	Crafty.enterScene("Main"); 
 } else {
 	canRotate = false;
 	Crafty.enterScene("Abort");
