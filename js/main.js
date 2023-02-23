@@ -196,7 +196,7 @@ Crafty.defineScene("Bonus", function() {
 		.textColor('white')
 		.textFont({
 			family: 'Manrope-Regular',
-			size: '28px',
+			size: '24px',
 			lineHeight: '38px',
 			weight: '400'
 		})
@@ -204,7 +204,7 @@ Crafty.defineScene("Bonus", function() {
 	title.x = screenWidth/2 - title.w/2;
 
 	var subtitle2 = Crafty.e("2D, DOM, Text")
-		.attr({w: 280, y: title.y + 120})
+		.attr({w: 280, y: title.y + 180})
 		.text('Заберите ваш бонус в удобном мессенджере')
 		.textColor('white')
 		.textFont({
