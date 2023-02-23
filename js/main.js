@@ -192,7 +192,7 @@ Crafty.defineScene("Bonus", function() {
 
 	var title = Crafty.e("2D, DOM, Text")
 		.attr({w: 280, y: subtitle.y + 51})
-		.text(function() { return 'Скидка ' + bonusAmount + '% на все без суммирования'})
+		.text(function() { return 'Скидка ' + bonusAmount + '% на товары брендов «Nivea», «Черный жемчуг», «Delicare»'})
 		.textColor('white')
 		.textFont({
 			family: 'Manrope-Regular',
