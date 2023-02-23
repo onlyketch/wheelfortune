@@ -274,14 +274,14 @@ Crafty.defineScene("Abort", function() {
 	btnTg.x = screenWidth/2 - btnTg.w/2;
 	btnTg.y = subtitle2.y + 120;
 	btnTg.bind("Click", function() {
-		window.open("https://t.me/s/ulybka_radugi", "_blank");
+		window.open("https://t.me/ulybkaradugibot?start=reoverbot", "_blank");
 	});
 
 	var btnVk = Crafty.e("2D, DOM, getVk, Mouse").attr({w: 286, h: 80}).css({'cursor': 'pointer'});
 	btnVk.x = screenWidth/2 - btnVk.w/2;
 	btnVk.y = btnTg.y + 103;
 	btnVk.bind("Click", function() {
-		window.open("https://vk.com/ulybka_radugi", "_blank");
+		window.open("https://vk.com/app7062840#Saleradugafub&force=1", "_blank");
 	});
 
 	var logo = Crafty.e("2D, DOM, logo")
