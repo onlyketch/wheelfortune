@@ -170,7 +170,6 @@ Crafty.defineScene("Bonus", function() {
 	if (currentSector == 3) bonusAmount = 15;
 	if (currentSector == 4) bonusAmount = 20;
 	if (currentSector == 5) bonusAmount = 30;
-	Crafty.storage('sale', bonusAmount);
 
 	Crafty.sprite("./images/get_tg.png", {getTg:[0,0,576,160]});
 	Crafty.sprite("./images/get_vk.png", {getVk:[0,0,572,160]});
@@ -192,11 +191,11 @@ Crafty.defineScene("Bonus", function() {
 
 	var title = Crafty.e("2D, DOM, Text")
 		.attr({w: 280, y: subtitle.y + 51})
-		.text(function() { return 'Скидка ' + bonusAmount + '% на товары брендов «Nivea», «Черный жемчуг», «Delicare»'})
+		.text(function() { return 'Скидка ' + bonusAmount + '% Скидка 30% на товары брендов «Nivea», «Черный жемчуг», «Delicare»'})
 		.textColor('white')
 		.textFont({
 			family: 'Manrope-Regular',
-			size: '28px',
+			size: '24px',
 			lineHeight: '38px',
 			weight: '400'
 		})
@@ -204,7 +203,7 @@ Crafty.defineScene("Bonus", function() {
 	title.x = screenWidth/2 - title.w/2;
 
 	var subtitle2 = Crafty.e("2D, DOM, Text")
-		.attr({w: 280, y: title.y + 120})
+		.attr({w: 280, y: title.y + 180})
 		.text('Заберите ваш бонус в удобном мессенджере')
 		.textColor('white')
 		.textFont({
@@ -217,7 +216,7 @@ Crafty.defineScene("Bonus", function() {
 
 	var btnGetTg = Crafty.e("2D, DOM, getTg, Mouse").attr({w: 288, h: 80}).css({'cursor': 'pointer'});
 	btnGetTg.x = screenWidth/2 - btnGetTg.w/2;
-	btnGetTg.y = subtitle2.y + 120;
+	btnGetTg.y = subtitle2.y + 140;
 	btnGetTg.bind("Click", function() {
 		window.open("https://t.me/ulybkaradugibot?start=tg_wheelfortune" + bonusAmount, "_self");
 	});
@@ -239,11 +238,10 @@ Crafty.defineScene("Abort", function() {
 
 	const screenWidth = document.body.clientWidth;
 	const screenHeight = document.body.clientHeight;
-	var bonusAmount = Crafty.storage('sale');
 
+	Crafty.sprite("./images/tg.png", {getTg:[0,0,576,160]});
+	Crafty.sprite("./images/vk.png", {getVk:[0,0,572,160]});
 	Crafty.sprite("./images/logo.png", {logo:[0,0,242,56]});
-	Crafty.sprite("./images/get_tg.png", {getTg:[0,0,576,160]});
-	Crafty.sprite("./images/get_vk.png", {getVk:[0,0,572,160]});
 
 	Crafty.init(screenWidth, screenHeight, document.getElementById('wheel'));
 
@@ -262,7 +260,7 @@ Crafty.defineScene("Abort", function() {
 
 	var subtitle2 = Crafty.e("2D, DOM, Text")
 		.attr({w: 280, y: title.y + 150})
-		.text('Заберите свой купон в удобном мессенджере')
+		.text('Следите за другими розыгрышами в удобном мессенджере')
 		.textColor('white')
 		.textFont({
 			family: 'Manrope-Regular',
@@ -276,14 +274,14 @@ Crafty.defineScene("Abort", function() {
 	btnTg.x = screenWidth/2 - btnTg.w/2;
 	btnTg.y = subtitle2.y + 120;
 	btnTg.bind("Click", function() {
-		window.open("https://t.me/ulybkaradugibot?start=tg_wheelfortune" + bonusAmount, "_self");
+		window.open("https://t.me/ulybkaradugibot?start=reoverbot", "_blank");
 	});
 
 	var btnVk = Crafty.e("2D, DOM, getVk, Mouse").attr({w: 286, h: 80}).css({'cursor': 'pointer'});
 	btnVk.x = screenWidth/2 - btnVk.w/2;
 	btnVk.y = btnTg.y + 103;
 	btnVk.bind("Click", function() {
-		window.open("https://vk.com/app7062840#fortune_coupon_ur&force=1&nominal=" + bonusAmount, "_self");
+		window.open("https://vk.com/app7062840#Saleradugafub&force=1", "_blank");
 	});
 
 	var logo = Crafty.e("2D, DOM, logo")
@@ -296,7 +294,7 @@ Crafty.defineScene("Abort", function() {
 var rotated = Crafty.storage('isRotated');
 if (!rotated) {
 	canRotate = true;
-	Crafty.enterScene("Main"); 
+	Crafty.enterScene("Bonus"); 
 } else {
 	canRotate = false;
 	Crafty.enterScene("Abort");
