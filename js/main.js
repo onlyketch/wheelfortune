@@ -192,7 +192,13 @@ Crafty.defineScene("Bonus", function() {
 
 	var title = Crafty.e("2D, DOM, Text")
 		.attr({w: 280, y: subtitle.y + 51})
-		.text(function() { return 'Скидка ' + bonusAmount + '% на товары брендов «Nivea», «Черный жемчуг», «Delicare»'})
+		.text(function() { 
+			if (bonusAmount == 30) {
+				return 'Скидка ' + bonusAmount + '% на товары брендов «Nivea», «Черный жемчуг», «Delicare»'
+			} else {
+				return 'Скидка ' + bonusAmount + '% на все без суммирования'
+			}
+		})
 		.textColor('white')
 		.textFont({
 			family: 'Manrope-Regular',
@@ -239,7 +245,7 @@ Crafty.defineScene("Abort", function() {
 
 	const screenWidth = document.body.clientWidth;
 	const screenHeight = document.body.clientHeight;
-	var bonusAmount = Crafty.storage('sale');
+	bonusAmount = Crafty.storage('sale');
 
 	Crafty.sprite("./images/logo.png", {logo:[0,0,242,56]});
 	Crafty.sprite("./images/get_tg.png", {getTg:[0,0,576,160]});
@@ -294,7 +300,10 @@ Crafty.defineScene("Abort", function() {
 });
 
 var rotated = Crafty.storage('isRotated');
-if (!rotated) {
+var bonusAmount = Crafty.storage('sale');
+if (!rotated || !bonusAmount) {
+	Crafty.storage.remove('isRotated');
+	Crafty.storage.remove('sale');
 	canRotate = true;
 	Crafty.enterScene("Main"); 
 } else {
